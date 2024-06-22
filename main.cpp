@@ -1,36 +1,38 @@
 #include <QApplication>
+#include "MyRect.h"
 #include <QGraphicsScene>
-#include <QGraphicsRectItem>
 #include <QGraphicsView>
 
 /*
-Prereqs:
--basic knowledge of c++ (pointers and memory management)
--VERY basic knowledge of Qt (widgets)
 Tutorial Topics:
--QGraphicsScene
--QGraphicsItem (QGraphicsRectItem)
--QGraphicsView
+-events (keyPressEvent() and QKeyEvent)
+-event propogation system
+-QDebug
 */
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     QApplication a(argc, argv);
 
     // create a scene
     QGraphicsScene * scene = new QGraphicsScene();
 
-    // create an item to put into the scene
-    QGraphicsRectItem * rect = new QGraphicsRectItem();
+    // create an item to add to the scene
+    MyRect * rect = new MyRect();
     rect->setRect(0,0,100,100);
-    QBrush redBrush(Qt::red);
-    rect->setBrush(redBrush);
+
     // add the item to the scene
     scene->addItem(rect);
 
-    // add a view to visualize the scene
+    // make rect focusable
+    rect->setFlag(QGraphicsItem::ItemIsFocusable);
+    rect->setFocus();
+
+    // create a view to visualize the scene
     QGraphicsView * view = new QGraphicsView(scene);
 
-    view->show();
+    // show the view
+    view->showFullScreen();
+
+
     return a.exec();
 }

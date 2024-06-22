@@ -1,22 +1,17 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QGraphicsPixmapItem>
-#include <QObject>
-
-class Player : public QObject, public QGraphicsPixmapItem {
-    Q_OBJECT
-
+class Player
+{
 public:
     Player();
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
-
-private:
-    int speed;
-    bool leftPressed, rightPressed, upPressed, downPressed;
-
-    void move();
 };
+#include <QGraphicsRectItem>
+
+class Player: public QGraphicsRectItem{
+public:
+    void keyPressEvent(QKeyEvent * event);
+};
+
 
 #endif // PLAYER_H
