@@ -13,6 +13,7 @@ void Player::Draw(QGraphicsScene &scene){
     rect->setBrush(redBrush);
     scene.addItem(rect);
     QGraphicsView * view = new QGraphicsView(&scene);
-    view->showFullScreen();
+    view->setFixedHeight(scene.height());
+    view->setFixedWidth(scene.width());
 }
 

@@ -3,7 +3,7 @@
 
 class Position
 {
-protected:
+public:
     int x;
     int y;
 public:
