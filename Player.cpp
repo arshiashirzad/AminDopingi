@@ -15,5 +15,6 @@ void Player::Draw(QGraphicsScene &scene){
     QGraphicsView * view = new QGraphicsView(&scene);
     view->setFixedHeight(scene.height());
     view->setFixedWidth(scene.width());
+    view->showFullScreen();
 }
 
