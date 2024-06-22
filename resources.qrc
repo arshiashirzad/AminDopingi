@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/spriteStandRight.png</file>
+    </qresource>
+</RCC>

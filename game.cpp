@@ -1,19 +1,16 @@
-#ifndef GAME_H
-#define GAME_H
+#include "game.h"
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include "player.h"
+Game::Game(QWidget *parent) : QGraphicsView(parent) {
+    scene = new QGraphicsScene(this);
+    scene->setSceneRect(0, 0, 800, 600);
+    setScene(scene);
 
-class Game : public QGraphicsView {
-    Q_OBJECT
+    player = new Player();
+    scene->addItem(player);
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
-public:
-    Game(QWidget *parent = 0);
-
-private:
-    QGraphicsScene *scene;
-    Player *player;
-};
-
-#endif // GAME_H
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(800, 600);
+}

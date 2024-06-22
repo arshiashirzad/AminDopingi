@@ -4,7 +4,7 @@
 
 Player::Player() : speed(5), leftPressed(false), rightPressed(false), upPressed(false), downPressed(false) {
     // Set the player image
-    setPixmap(QPixmap(":/images/player.png"));
+    setPixmap(QPixmap(":/assets/spriteStandRight.png"));
 
     // Set up a timer to call the move() method repeatedly
     QTimer *timer = new QTimer(this);
