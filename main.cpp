@@ -13,5 +13,6 @@ int main(int argc, char *argv[]){
     QGraphicsScene * scene = new QGraphicsScene();
     Player * player = new Player();
     player->Draw(*scene);
+    player->handleGravity(*scene);
     return a.exec();
 }

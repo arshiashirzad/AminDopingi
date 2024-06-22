@@ -8,9 +8,13 @@ class Player:public BodyObject
 {
 protected:
     Position * position ;
+    Position * velocity;
+    int height;
+    int width;
 public:
     Player();
     void keyPressEvent(QKeyEvent * event);
     virtual void Draw(QGraphicsScene &scene);
+    void handleGravity(QGraphicsScene &);
 };
 #endif // PLAYER_H
