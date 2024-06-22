@@ -7,10 +7,7 @@ protected:
     int x;
     int y;
 public:
-    Position(int w , int h){
-        x=w;
-        y=h;
-    };
+    Position(int, int);
 };
 
 #endif

@@ -5,7 +5,7 @@ class BodyObject
 {
 public:
     BodyObject();
-    virtual void Draw(QGraphicsScene scene)=0;
+    virtual void Draw(QGraphicsScene &scene)=0;
 };
 
 #endif

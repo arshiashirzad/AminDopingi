@@ -18,7 +18,6 @@ SOURCES += \
 HEADERS += \
     bodyobject.h \
     mainwindow.h \
-    myrect.h \
     player.h \
     position.h
 

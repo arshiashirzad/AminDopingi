@@ -1,17 +1,16 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
-class Player
+#include "bodyobject.h"
+#include "position.h"
+#include <QGraphicsView>
+#include "QGraphicsRectItem"
+class Player:public BodyObject
 {
+protected:
+    Position * position ;
 public:
     Player();
-};
-#include <QGraphicsRectItem>
-
-class Player: public QGraphicsRectItem{
-public:
     void keyPressEvent(QKeyEvent * event);
+    virtual void Draw(QGraphicsScene &scene);
 };
-
-
 #endif // PLAYER_H

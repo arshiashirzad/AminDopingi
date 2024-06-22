@@ -1,8 +1,6 @@
 #include <QApplication>
-#include "MyRect.h"
 #include <QGraphicsScene>
-#include <QGraphicsView>
-
+#include "Player.h"
 /*
 Tutorial Topics:
 -events (keyPressEvent() and QKeyEvent)
@@ -12,27 +10,8 @@ Tutorial Topics:
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
-
-    // create a scene
     QGraphicsScene * scene = new QGraphicsScene();
-
-    // create an item to add to the scene
-    MyRect * rect = new MyRect();
-    rect->setRect(0,0,100,100);
-
-    // add the item to the scene
-    scene->addItem(rect);
-
-    // make rect focusable
-    rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    rect->setFocus();
-
-    // create a view to visualize the scene
-    QGraphicsView * view = new QGraphicsView(scene);
-
-    // show the view
-    view->showFullScreen();
-
-
+    Player * player = new Player();
+    player->Draw(*scene);
     return a.exec();
 }
