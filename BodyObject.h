@@ -10,10 +10,8 @@ protected:
     Position position;
 
 public:
-    BodyObject(int width, int height, Position position)
-        : width(width), height(height), position(position) {}
-
-    virtual ~BodyObject() {}
+    BodyObject(int width, int height, Position position);
+    virtual ~BodyObject();
 
     virtual void draw(QGraphicsScene& scene) = 0;
 };
