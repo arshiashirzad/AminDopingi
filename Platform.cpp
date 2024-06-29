@@ -2,8 +2,7 @@
 
 Platform::Platform(int width, int height, Position position)
     : BodyObject(width, height, position), rect(new QGraphicsRectItem(0, 0, width, height)) {
-    rect->setBrush(Qt::gray); // Set color to gray for visibility
-    qDebug() << "Platform created at (" << position.x << "," << position.y << ")";
+    rect->setBrush(Qt::gray);
 }
 
 Platform::~Platform() {
