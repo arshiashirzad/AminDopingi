@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     player->setBrush(Qt::red);
     player->setPos(50, 468);
     scene.addItem(player);
-
+    scene.setBackgroundBrush(QBrush(QImage(":/images/assets/background.png")));
     int platformWidth = 100;
     int platformHeight = 20;
     int platformCount = 10;
