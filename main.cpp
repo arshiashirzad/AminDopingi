@@ -15,28 +15,25 @@ int main(int argc, char *argv[]) {
     view.setScene(&scene);
     view.setFixedSize(800, 600);
 
-    // Add player
     QGraphicsRectItem* player = new QGraphicsRectItem(0, 0, 32, 32);
-    player->setBrush(Qt::blue);
-    player->setPos(50, 468); // Adjust starting position to be above the platforms
+    player->setBrush(Qt::red);
+    player->setPos(50, 468);
     scene.addItem(player);
 
-    // Add continuous ground platforms
     int platformWidth = 100;
     int platformHeight = 20;
-    int platformCount = 10; // Number of platforms
+    int platformCount = 10;
     int startY = 500;
 
     for (int i = 0; i < platformCount; ++i) {
         QGraphicsRectItem* platform = new QGraphicsRectItem(0, 0, platformWidth, platformHeight);
         platform->setPos(i * platformWidth, startY);
-        platform->setBrush(Qt::gray);
+        platform->setBrush(Qt::yellow);
         scene.addItem(platform);
     }
 
     view.show();
 
-    qDebug() << "Application started with player and continuous ground platforms";
 
     KeyPressHandler *keyPressHandler = new KeyPressHandler(&view);
     view.installEventFilter(keyPressHandler);
@@ -45,10 +42,9 @@ int main(int argc, char *argv[]) {
     QObject::connect(&timer, &QTimer::timeout, [&]() {
         static int velocityY = 0;
         static int posX = 50;
-        static int posY = 468; // Adjust starting position to be above the platforms
+        static int posY = 468;
         static bool onGround = false;
 
-        // Handle left and right movement
         if (keyPressHandler->leftPressed) {
             posX -= 5;
         }
@@ -56,34 +52,30 @@ int main(int argc, char *argv[]) {
             posX += 5;
         }
 
-        // Apply gravity
         velocityY += 1;
         posY += velocityY;
 
-        // Check collision with platforms
         QList<QGraphicsItem*> collidingItems = player->collidingItems();
         onGround = false;
         for (auto& item : collidingItems) {
             if (item->type() == QGraphicsRectItem::Type) {
                 onGround = true;
                 posY = item->y() - player->rect().height();
-                velocityY = 0; // Stop falling
+                // Stop falling
+                velocityY = 0;
                 break;
             }
         }
 
-        // Handle jump
         if (keyPressHandler->upPressed && onGround) {
-            velocityY = -20; // Initial jump velocity
+            velocityY = -20;
             posY += velocityY;
         }
 
-        // Update player position
         player->setPos(posX, posY);
 
-        qDebug() << "Player position: (" << posX << "," << posY << ")";
     });
-    timer.start(16); // 60 FPS
+    timer.start(16);
 
     return a.exec();
 }
