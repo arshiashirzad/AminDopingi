@@ -15,8 +15,11 @@ SOURCES += \
     Platform.cpp \
     Player.cpp \
     Position.cpp \
+    exitbutton.cpp \
+    gamemenu.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    playbutton.cpp
 
 HEADERS += \
     BodyObject.h \
@@ -24,7 +27,10 @@ HEADERS += \
     KeyPressHandler.h \
     Platform.h \
     Position.h \
+    exitbutton.h \
+    gamemenu.h \
     mainwindow.h \
+    playbutton.h \
     player.h
 
 FORMS += \
