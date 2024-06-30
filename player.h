@@ -10,12 +10,10 @@ class Player : public BodyObject {
 private:
     int speed;
     Position velocity;
-    QGraphicsRectItem* rect;
-
 public:
     Player(int width, int height, Position position, int speed, Position velocity);
     ~Player();
-
+    QGraphicsRectItem* rect;
     void handleGravity();
     void handleMovement();
     void draw(QGraphicsScene& scene) override;

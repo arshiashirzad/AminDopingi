@@ -2,7 +2,8 @@
 
 Player::Player(int width, int height, Position position, int speed, Position velocity)
     : BodyObject(width, height, position), speed(speed), velocity(velocity), rect(new QGraphicsRectItem(0, 0, width, height)) {
-    rect->setBrush(Qt::red);
+    rect->setBrush(Qt::blue);
+    rect->setPos(50, 468);
 }
 
 Player::~Player() {
