@@ -1,13 +1,20 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+#include <QPointF>
+
 class Position {
 public:
-    int x, y;
+    double x;
+    double y;
 
     Position();
-    Position(int x, int y);
-    Position(const Position& other);
+    Position(double _x, double _y);
+
+    Position(const QPointF &point);
+
+    operator QPointF() const;
+
     Position& operator=(const Position& other);
 };
 

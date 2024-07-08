@@ -10,21 +10,23 @@ gameView::gameView(int whichNum)
 
     gameAmin = new AminDopingi(gameScene);
 
+
     setScene(gameScene);
     setRenderHint(QPainter::Antialiasing);
 
     createPlatforms();
 
+
+
     stageControlTimer = new QTimer(this);
     connect(stageControlTimer, &QTimer::timeout, this, &gameView::controlStage);
     stageControlTimer->start(1000 / 60);
+
     qDebug() << "gameView constructor called with parameter:" << whichNum;
 }
 
 void gameView::createPlatforms() {
-    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 100, 400);
-    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 300, 300);
-    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 500, 200);
+    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 100, 500);
 }
 
 void gameView::controlStage() {
@@ -33,14 +35,21 @@ void gameView::controlStage() {
 
     QList<QGraphicsItem *> collidingItems = gameAmin->collidingItems();
     foreach (QGraphicsItem *item, collidingItems) {
-        if (dynamic_cast<Platform *>(item)) {
-            gameAmin->y(0);
-            gameAmin->y(item->y() - gameAmin->pixmap().height());
+        Platform *platform = dynamic_cast<Platform *>(item);
+        if (platform) {
+            QRectF platformRect = platform->boundingRect();
+            QPointF aminPos = gameAmin->pos();
+
+            if (gameAmin->velocity.y > 0 && aminPos.y() < platformRect.top()) {
+                gameAmin->velocity.y = 0;
+                gameAmin->setY(platformRect.top() - gameAmin->boundingRect().height());
+            }
         }
     }
 
     qDebug() << "controlStage method called";
 }
+
 
 QGraphicsScene* gameView::sendScene() {
     return gameScene;

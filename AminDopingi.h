@@ -14,11 +14,11 @@ class AminDopingi : public QObject, public QGraphicsPixmapItem {
     friend class oneGameView;
 private:
     int speed;
-    Position velocity;
     QTimer *timer;
     QGraphicsScene *scene;
     KeyPressHandler *keyPressHandler;
 public:
+    Position velocity;
     explicit AminDopingi(QGraphicsScene *gameScene);
     ~AminDopingi();
     void handleGravity();
