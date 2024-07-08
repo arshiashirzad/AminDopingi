@@ -19,34 +19,29 @@ gameView::gameView(int whichNum)
     connect(stageControlTimer, &QTimer::timeout, this, &gameView::controlStage);
     stageControlTimer->start(1000 / 60);
 
-    qDebug() << "gameView constructor called with parameter:" << whichNum;
 }
 
 void gameView::createPlatforms() {
-    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 100, 500);
+    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), -140, 500);
+    new Platform(gameScene, QPixmap(":/images/assets/platformSmallTall.png"), 600, 400);
+
 }
 
 void gameView::controlStage() {
-    gameAmin->handleGravity();
-    gameAmin->handleMovement();
-
-    if (checkCollisionWithPlatform()) {
-        gameAmin->velocity.y=0; // Stop falling
-        gameAmin->setPos(gameAmin->x(), gameAmin->y() - 1); // Ensure the player stays on the platform
-    }
-
-    qDebug() << "controlStage method called";
+    checkCollisionWithPlatform();
 }
 
-bool gameView::checkCollisionWithPlatform() {
+void gameView::checkCollisionWithPlatform() {
     QList<QGraphicsItem *> collidingItems = gameAmin->collidingItems();
     for (QGraphicsItem *item : collidingItems) {
         Platform *platform = dynamic_cast<Platform *>(item);
         if (platform) {
-            return true;
+            gameAmin->stopFalling();
+            gameAmin->setY(platform->y() - gameAmin->boundingRect().height());
+            return;
         }
     }
-    return false;
+    gameAmin->onGround = false;
 }
 
 QGraphicsScene* gameView::sendScene() {

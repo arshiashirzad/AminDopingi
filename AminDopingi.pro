@@ -11,7 +11,6 @@ CONFIG += c++17
 SOURCES += \
     AminDopingi.cpp \
     BodyObject.cpp \
-    Game.cpp \
     KeyPressHandler.cpp \
     Platform.cpp \
     Position.cpp \
@@ -25,7 +24,6 @@ SOURCES += \
 HEADERS += \
     AminDopingi.h \
     BodyObject.h \
-    Game.h \
     KeyPressHandler.h \
     Platform.h \
     Position.h \

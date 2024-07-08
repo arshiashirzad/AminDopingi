@@ -1,34 +1,26 @@
 #include "AminDopingi.h"
 #include <QGraphicsScene>
-#include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QKeyEvent>
 #include "Position.h"
+
 AminDopingi::AminDopingi(QGraphicsScene *gameScene)
-    : QObject(), QGraphicsPixmapItem(), scene{gameScene}, speed(0), velocity(0, 0),
-    timer(new QTimer(this)), keyPressHandler(new KeyPressHandler(this))
-{
+    : QObject(), QGraphicsPixmapItem(), scene{gameScene}, speed(5), velocity(0, 0),
+    timer(new QTimer(this)), keyPressHandler(new KeyPressHandler(this)), onGround(false), velocityY(0) {
     QPixmap playerPixmap(":/images/assets/spriteStandRight.png");
-    playerPixmap = playerPixmap.scaled(QSize(50, 50));
+    playerPixmap = playerPixmap.scaled(QSize(50, 90));
     setPixmap(playerPixmap);
     gameScene->addItem(this);
     scene->installEventFilter(keyPressHandler);
+
+    setPos(50, 200);
+
     QObject::connect(timer, &QTimer::timeout, this, [this]() {
-        static int velocityY = 0;
-        static int posX = 400;
-        static int posY = 200;
-        static bool onGround = false;
-        if (keyPressHandler->leftPressed) {
-            posX -= 5;
-        }
-        if (keyPressHandler->rightPressed) {
-            posX += 5;
-        }
-        velocityY += 1;
-        posY += velocityY;
-        setPos(posX, posY);
+        move();
+        applyGravity();
     });
     timer->start(16);
+
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 }
@@ -38,14 +30,34 @@ AminDopingi::~AminDopingi() {
     delete keyPressHandler;
 }
 
-void AminDopingi::handleGravity() {
-    velocity.y += 1;
-    setY(y() + velocity.y);
+void AminDopingi::applyGravity() {
+    if (!onGround) {
+        velocityY += 1;
+        setY(y() + velocityY);
+    }
 }
 
-void AminDopingi::handleMovement() {
-    setX(x() + velocity.x * speed);
+void AminDopingi::move() {
+    if (keyPressHandler->leftPressed) {
+        setX(x() - speed);
+    }
+    if (keyPressHandler->rightPressed) {
+        setX(x() + speed);
+    }
 }
+
+void AminDopingi::jump() {
+    if (onGround) {
+        velocityY = -20;
+        onGround = false;
+    }
+}
+
+void AminDopingi::stopFalling() {
+    velocityY = 0;
+    onGround = true;
+}
+
 void AminDopingi::setVelocity(const QPointF &newVelocity) {
     velocity = newVelocity;
 }
