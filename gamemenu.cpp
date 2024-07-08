@@ -1,5 +1,4 @@
 #include "gamemenu.h"
-
 gameMenu::gameMenu()
 
 {
@@ -10,6 +9,13 @@ gameMenu::gameMenu()
     setFixedSize(437,700);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    gameName = new QGraphicsTextItem("AMIN DOPINGI");
+    QFont titleFont("Helvetica", 32, QFont::Bold);
+    gameName->setFont(titleFont);
+    gameName->setDefaultTextColor(QColor(255, 165, 0));
+    int xPos = (sceneRect().width() - gameName->boundingRect().width()) / 2;
+    gameName->setPos(xPos, 100);
+    menuScene->addItem(gameName);
     pButton= new playButton(menuScene);
     eButton= new exitButton(menuScene);
 }

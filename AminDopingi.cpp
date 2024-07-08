@@ -12,12 +12,11 @@ AminDopingi::AminDopingi(QGraphicsScene *gameScene)
     playerPixmap = playerPixmap.scaled(QSize(50, 50));
     setPixmap(playerPixmap);
     gameScene->addItem(this);
-    setPos(100, 200);
     scene->installEventFilter(keyPressHandler);
     QObject::connect(timer, &QTimer::timeout, this, [this]() {
         static int velocityY = 0;
-        static int posX = 50;
-        static int posY = 468;
+        static int posX = 400;
+        static int posY = 200;
         static bool onGround = false;
         if (keyPressHandler->leftPressed) {
             posX -= 5;
