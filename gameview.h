@@ -6,12 +6,13 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "AminDopingi.h"
-
+#include "Platform.h"
 class gameView : public QGraphicsView {
     Q_OBJECT
 private:
     AminDopingi *gameAmin;
     QTimer *stageControlTimer;
+    bool checkCollisionWithPlatform();
     QGraphicsScene *gameScene;
 
 public:
