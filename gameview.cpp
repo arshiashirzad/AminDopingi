@@ -1,7 +1,5 @@
 #include "gameView.h"
-#include <QGraphicsScene>
-#include <QGraphicsItem>
-#include <QDebug>
+
 
 gameView::gameView(int whichNum)
     : QGraphicsView(), gameAmin(nullptr), stageControlTimer(nullptr), gameScene(nullptr) {
@@ -29,6 +27,9 @@ void gameView::createPlatforms() {
 
 void gameView::controlStage() {
     checkCollisionWithPlatform();
+    if(gameAmin->pos().y()> 600){
+        gameAmin->gameOver(gameScene);
+    }
 }
 
 void gameView::checkCollisionWithPlatform() {
@@ -47,3 +48,4 @@ void gameView::checkCollisionWithPlatform() {
 QGraphicsScene* gameView::sendScene() {
     return gameScene;
 }
+

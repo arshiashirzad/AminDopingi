@@ -5,6 +5,10 @@
 #include <QTimer>
 #include "AminDopingi.h"
 #include "Platform.h"
+#include <QMessageBox>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QDebug>
 
 class gameView : public QGraphicsView {
     Q_OBJECT
@@ -12,12 +16,10 @@ class gameView : public QGraphicsView {
 public:
     gameView(int whichNum=0);
     QGraphicsScene* sendScene();
-
 private:
     void createPlatforms();
     void controlStage();
     void checkCollisionWithPlatform();
-
     QGraphicsScene *gameScene;
     AminDopingi *gameAmin;
     QTimer *stageControlTimer;
