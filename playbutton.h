@@ -5,19 +5,17 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
-#include "onegameview.h"
-#include "secondgameview.h"
+#include "gameview.h"
 class playButton : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 private:
-    oneGameView *oneGame;
+    gameView *Game;
     QGraphicsScene playButtonScene;
     bool gameStart;
 public:
     explicit playButton(QGraphicsScene* mainScene);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-signals:
 
 };
 

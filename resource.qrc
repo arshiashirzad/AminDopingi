@@ -3,5 +3,6 @@
         <file>assets/background.png</file>
         <file>assets/exit.png</file>
         <file>assets/play.png</file>
+        <file>assets/spriteStandRight.png</file>
     </qresource>
 </RCC>
