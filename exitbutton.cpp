@@ -13,4 +13,5 @@ exitButton::exitButton(QGraphicsScene *meinScene)
 void exitButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     exit(1);
+
 }

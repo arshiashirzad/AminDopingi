@@ -2,19 +2,20 @@
 #define KEYPRESSHANDLER_H
 
 #include <QObject>
+#include <QEvent>
 #include <QKeyEvent>
 
 class KeyPressHandler : public QObject {
     Q_OBJECT
 
 public:
-    KeyPressHandler(QObject *parent = nullptr);
-
-    bool eventFilter(QObject *obj, QEvent *event) override;
-
+    explicit KeyPressHandler(QObject *parent = nullptr);
     bool leftPressed;
     bool rightPressed;
     bool upPressed;
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 };
 
 #endif // KEYPRESSHANDLER_H

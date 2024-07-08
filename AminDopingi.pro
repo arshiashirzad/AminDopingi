@@ -9,19 +9,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AminDopingi.cpp \
     BodyObject.cpp \
     Game.cpp \
     KeyPressHandler.cpp \
     Platform.cpp \
-    Player.cpp \
     Position.cpp \
     exitbutton.cpp \
     gamemenu.cpp \
+    gameview.cpp \
     main.cpp \
     mainwindow.cpp \
     playbutton.cpp
 
 HEADERS += \
+    AminDopingi.h \
     BodyObject.h \
     Game.h \
     KeyPressHandler.h \
@@ -29,9 +31,9 @@ HEADERS += \
     Position.h \
     exitbutton.h \
     gamemenu.h \
+    gameview.h \
     mainwindow.h \
-    playbutton.h \
-    player.h
+    playbutton.h
 
 FORMS += \
     mainwindow.ui

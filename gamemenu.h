@@ -19,7 +19,6 @@ private:
     QGraphicsTextItem *gameName;
 public:
     explicit gameMenu();
-signals:
 
 };
 #endif // GAMEMENU_H

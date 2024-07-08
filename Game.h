@@ -6,18 +6,18 @@
 #include <vector>
 #include <QDebug>
 #include "Platform.h"
-#include "Player.h"
+#include "AminDopingi.h"
 
 class Game {
 private:
     QGraphicsView& view;
     QGraphicsScene& scene;
     std::vector<Platform> platforms;
-    Player player;
+    AminDopingi player;
     int amountDistance;
 
 public:
-    Game(QGraphicsView& view, QGraphicsScene& scene, std::vector<Platform> platforms, Player player, int amountDistance);
+    Game(QGraphicsView& view, QGraphicsScene& scene, std::vector<Platform> platforms, AminDopingi player, int amountDistance);
     void handleGameOver();
     void handleVictory();
     void draw();
