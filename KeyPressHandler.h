@@ -2,20 +2,24 @@
 #define KEYPRESSHANDLER_H
 
 #include <QObject>
-#include <QEvent>
 #include <QKeyEvent>
+
+class AminDopingi;
 
 class KeyPressHandler : public QObject {
     Q_OBJECT
 
 public:
-    explicit KeyPressHandler(QObject *parent = nullptr);
+    explicit KeyPressHandler(AminDopingi *player);
     bool leftPressed;
     bool rightPressed;
-    bool upPressed;
+    bool jumpPressed;
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
+
+private:
+    AminDopingi *player;
 };
 
 #endif // KEYPRESSHANDLER_H

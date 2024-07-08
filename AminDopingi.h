@@ -1,29 +1,34 @@
 #ifndef AMINDOPINGI_H
 #define AMINDOPINGI_H
 
-#include "BodyObject.h"
-#include <QGraphicsRectItem>
-#include <QGraphicsScene>
-#include <QDebug>
-#include <QTimer>
+#include <QObject>
 #include <QGraphicsPixmapItem>
-#include "KeyPressHandler.h"
+#include <QTimer>
 #include "Position.h"
+#include "KeyPressHandler.h"
+
 class AminDopingi : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
-    friend class oneGameView;
-private:
-    int speed;
-    QTimer *timer;
-    QGraphicsScene *scene;
-    KeyPressHandler *keyPressHandler;
+
 public:
-    Position velocity;
     explicit AminDopingi(QGraphicsScene *gameScene);
     ~AminDopingi();
-    void handleGravity();
-    void handleMovement();
+    void applyGravity();
+    void move();
+    void jump();
+    void stopFalling();
     void setVelocity(const QPointF &newVelocity);
+    bool onGround;
+
+private:
+    QGraphicsScene *scene;
+    int speed;
+    Position velocity;
+    QTimer *timer;
+    KeyPressHandler *keyPressHandler;
+
+public:
+    int velocityY;
 };
 
 #endif // AMINDOPINGI_H
