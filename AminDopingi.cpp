@@ -8,13 +8,12 @@ AminDopingi::AminDopingi(QGraphicsScene *gameScene)
     : QObject(), QGraphicsPixmapItem(), scene{gameScene}, speed(0), velocity({0, 0}),
     timer(new QTimer(this)), keyPressHandler(new KeyPressHandler(this))
 {
-    setPixmap(QPixmap(":/images/assets/spriteStandRight.png"));
+    QPixmap playerPixmap(":/images/assets/spriteStandRight.png");
+    playerPixmap = playerPixmap.scaled(QSize(50, 50));
+    setPixmap(playerPixmap);
     gameScene->addItem(this);
     setPos(200, 350);
-
-    // Install the event filter once
     scene->installEventFilter(keyPressHandler);
-
     QObject::connect(timer, &QTimer::timeout, this, [this]() {
         static int velocityY = 0;
         static int posX = 50;
@@ -31,12 +30,9 @@ AminDopingi::AminDopingi(QGraphicsScene *gameScene)
         velocityY += 1;
         posY += velocityY;
 
-        // Update the position of the doodler
         setPos(posX, posY);
     });
-
-    timer->start(16); // approximately 60 FPS
-
+    timer->start(16);
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 }
@@ -53,4 +49,7 @@ void AminDopingi::handleGravity() {
 
 void AminDopingi::handleMovement() {
     setX(x() + velocity.x * speed);
+}
+void AminDopingi::setVelocity(const QPointF &newVelocity) {
+    velocity = newVelocity;
 }

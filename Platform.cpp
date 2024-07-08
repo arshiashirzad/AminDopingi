@@ -1,17 +1,9 @@
 #include "Platform.h"
+#include <QGraphicsScene>
 
-Platform::Platform(int width, int height, Position position)
-    : BodyObject(width, height, position), rect(new QGraphicsRectItem(0, 0, width, height)) {
-    rect->setBrush(Qt::gray);
-}
-
-Platform::~Platform() {
-    delete rect;
-}
-
-void Platform::draw(QGraphicsScene& scene) {
-    if (!rect->scene()) {
-        scene.addItem(rect);
-    }
-    rect->setPos(position.x, position.y);
+Platform::Platform(QGraphicsScene *scene, const QPixmap &pixmap, int x, int y)
+    : QGraphicsPixmapItem(pixmap)
+{
+    setPos(x, y);
+    scene->addItem(this);
 }

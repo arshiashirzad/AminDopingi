@@ -23,6 +23,7 @@ public:
     ~AminDopingi();
     void handleGravity();
     void handleMovement();
+    void setVelocity(const QPointF &newVelocity);
 };
 
 #endif // AMINDOPINGI_H

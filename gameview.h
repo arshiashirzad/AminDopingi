@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QGraphicsItem>
 #include <QTimer>
 #include "AminDopingi.h"
 
@@ -14,12 +13,16 @@ private:
     AminDopingi *gameAmin;
     QTimer *stageControlTimer;
     QGraphicsScene *gameScene;
+
 public:
-    explicit gameView(int wichNum = 0);
+    explicit gameView(int whichNum = 0);
     QGraphicsScene* sendScene();
-signals:
-public slots:
+
+private slots:
     void controlStage();
+
+private:
+    void createPlatforms();
 };
 
 #endif // GAMEVIEW_H

@@ -1,37 +1,47 @@
 #include "gameView.h"
+#include "Platform.h"
 #include <QDebug>
 
-// Constructor implementation
-gameView::gameView(int wichNum) {
-    // Initialize gameScene
+gameView::gameView(int whichNum)
+    : QGraphicsView(), gameAmin(nullptr), stageControlTimer(nullptr), gameScene(nullptr)
+{
     gameScene = new QGraphicsScene(this);
     setBackgroundBrush(QBrush(QImage(":/images/assets/background.png")));
-    // Initialize gameAmin
+
     gameAmin = new AminDopingi(gameScene);
 
-    // Set up the view
     setScene(gameScene);
     setRenderHint(QPainter::Antialiasing);
 
-    // Set up the stage control timer
+    createPlatforms();
+
     stageControlTimer = new QTimer(this);
     connect(stageControlTimer, &QTimer::timeout, this, &gameView::controlStage);
-    stageControlTimer->start(1000 / 60); // Call controlStage() at ~60 FPS
-
-    qDebug() << "gameView constructor called with parameter:" << wichNum;
+    stageControlTimer->start(1000 / 60);
+    qDebug() << "gameView constructor called with parameter:" << whichNum;
 }
 
-// Method implementation
+void gameView::createPlatforms() {
+    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 100, 400);
+    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 300, 300);
+    new Platform(gameScene, QPixmap(":/images/assets/platform.png"), 500, 200);
+}
+
 void gameView::controlStage() {
-    // Logic to control the stage, for example:
     gameAmin->handleGravity();
     gameAmin->handleMovement();
 
-    // Add any additional stage control logic here
+    QList<QGraphicsItem *> collidingItems = gameAmin->collidingItems();
+    foreach (QGraphicsItem *item, collidingItems) {
+        if (dynamic_cast<Platform *>(item)) {
+            gameAmin->y(0);
+            gameAmin->y(item->y() - gameAmin->pixmap().height());
+        }
+    }
+
     qDebug() << "controlStage method called";
 }
 
-// sendScene method implementation
 QGraphicsScene* gameView::sendScene() {
-    return gameScene; // Return a pointer to the scene
+    return gameScene;
 }

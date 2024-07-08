@@ -7,7 +7,7 @@ exitButton::exitButton(QGraphicsScene *meinScene)
 
 
     meinScene->addItem(this);
-    setPos(150,500);
+    setPos(150,450);
 }
 
 void exitButton::mousePressEvent(QGraphicsSceneMouseEvent *event)

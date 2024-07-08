@@ -1,19 +1,12 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include "BodyObject.h"
-#include <QGraphicsRectItem>
-#include <QDebug>
+#include <QGraphicsPixmapItem>
 
-class Platform : public BodyObject {
-private:
-    QGraphicsRectItem* rect;
-
+class Platform : public QGraphicsPixmapItem
+{
 public:
-    Platform(int width, int height, Position position);
-    ~Platform();
-
-    void draw(QGraphicsScene& scene) override;
+    Platform(QGraphicsScene *scene, const QPixmap &pixmap, int x, int y);
 };
 
 #endif // PLATFORM_H
