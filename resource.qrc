@@ -4,5 +4,6 @@
         <file>assets/exit.png</file>
         <file>assets/play.png</file>
         <file>assets/spriteStandRight.png</file>
+        <file>assets/platform.png</file>
     </qresource>
 </RCC>
