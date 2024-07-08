@@ -61,3 +61,16 @@ void AminDopingi::stopFalling() {
 void AminDopingi::setVelocity(const QPointF &newVelocity) {
     velocity = newVelocity;
 }
+void AminDopingi::gameOver(QGraphicsScene *gameScene) {
+    if (!itsOver) {
+        timer->stop();
+        gameOverText = new QGraphicsTextItem("Game Over!");
+        QFont titleFont("Decorative", 32, QFont::Bold);
+        gameOverText->setFont(titleFont);
+        gameOverText->setDefaultTextColor(QColor(255, 165, 0));
+        int xPos = (gameScene->width() - gameOverText->boundingRect().width()) / 2;
+        gameOverText->setPos(xPos, 100);
+        gameScene->addItem(gameOverText);
+        itsOver = true;
+    }
+}

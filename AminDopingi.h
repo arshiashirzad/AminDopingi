@@ -19,16 +19,16 @@ public:
     void stopFalling();
     void setVelocity(const QPointF &newVelocity);
     bool onGround;
-
+    int velocityY;
+    void gameOver(QGraphicsScene *gameScene);
+    bool itsOver=false;
+    QGraphicsTextItem *gameOverText;
 private:
     QGraphicsScene *scene;
     int speed;
     Position velocity;
     QTimer *timer;
     KeyPressHandler *keyPressHandler;
-
-public:
-    int velocityY;
 };
 
 #endif // AMINDOPINGI_H

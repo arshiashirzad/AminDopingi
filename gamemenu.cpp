@@ -10,7 +10,7 @@ gameMenu::gameMenu()
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     gameName = new QGraphicsTextItem("AMIN DOPINGI");
-    QFont titleFont("Helvetica", 32, QFont::Bold);
+    QFont titleFont("Decorative", 32, QFont::Bold);
     gameName->setFont(titleFont);
     gameName->setDefaultTextColor(QColor(255, 165, 0));
     int xPos = (sceneRect().width() - gameName->boundingRect().width()) / 2;
